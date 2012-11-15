@@ -9,14 +9,11 @@ unusedfiles="";
 #initialize the counter
 let count=0;
 # collect the files needs to be introspected
-PROJ=`find $1 -name '*.?ib' -o -name '*.[mh]'`
+project=`find $1 -name '*.?ib' -o -name '*.[mh]'`
 
 for i in `find $1 -name "*.png" -o -name "*.jpg"`; do 
     file=`basename -s .jpg "$i" | xargs basename -s .png | xargs basename -s @2x`
-    # result=`ack -i "$file"`
-    # if [ -z "$result" ]; then
-    # echo $file
-    if ! grep -q $file $PROJ; then
+    if ! grep -q $file $project; then
         unusedfiles="$unusedfiles <br> $i";
         # echo $i
         let "count = count + 1";
@@ -25,15 +22,39 @@ done
 #construct body
 echo "<body>"
 echo "<h3>"
+echo "There are $count unused images"
+echo "</h3>"
+echo "<pre>"
+#generate body content if there are unused files.
+if [ $count > 0 ]; then
+    echo $unusedfiles;
+fi
+echo "</pre>"
+#---------------------------------------------------------------------------------------
+# Experimental util to find the source files which are not defined in pbxproj definition.
+#---------------------------------------------------------------------------------------
+counter=0;
+unusedfiles="";
+project=`find $1 -name '*.pbxproj'`
+
+for i in `find $1 -name "*.[hmca]" -o -name "*.cpp"`; do 
+    file=`basename "$i"`
+    if ! grep -q $file $project; then
+        unusedfiles="$unusedfiles <br> $i";
+        let "count = count + 1";
+    fi
+done
+echo "<i> <b>Note:</b> This scans all source files (*.h, *.m, *.c, *.a, *.cpp) references in all pbxproj definitions. Once it is added into project definitions, it is considered being used.</i> <br>"
+
+echo "<h3>"
 echo "There are $count unused files"
 echo "</h3>"
 echo "<pre>"
 #generate body content if there are unused files.
 if [ $count > 0 ]; then
-	echo $unusedfiles;
+    echo $unusedfiles;
 fi
 echo "</pre>"
-
 echo "</body>"
 echo "</html>"
 #thats it!
