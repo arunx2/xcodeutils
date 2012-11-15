@@ -9,9 +9,9 @@ unusedfiles="";
 #initialize the counter
 let count=0;
 # collect the files needs to be introspected
-PROJ=`find . -name '*.?ib' -o -name '*.[mh]'`
+PROJ=`find $1 -name '*.?ib' -o -name '*.[mh]'`
 
-for i in `find . -name "*.png" -o -name "*.jpg"`; do 
+for i in `find $1 -name "*.png" -o -name "*.jpg"`; do 
     file=`basename -s .jpg "$i" | xargs basename -s .png | xargs basename -s @2x`
     # result=`ack -i "$file"`
     # if [ -z "$result" ]; then
