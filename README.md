@@ -14,6 +14,8 @@ A small utility which generates a report of unused resources (png, jpg) in the x
 </ul>
 
 <i>How to use</i>
-~~~~~
-$>sh ./find-unused-resources.sh >unused-resources.html
-~~~~~~~~
+~~~
+$>sh ./find-unused-resources.sh path-to-project > report-name
+
+ex: find-unused-resources.sh ~/myproject > unused.html
+~~~
