@@ -33,7 +33,7 @@ echo "</pre>"
 #---------------------------------------------------------------------------------------
 # Experimental util to find the source files which are not defined in pbxproj definition.
 #---------------------------------------------------------------------------------------
-counter=0;
+count=0;
 unusedfiles="";
 project=`find $1 -name '*.pbxproj'`
 
