@@ -5,7 +5,7 @@ Some useful utilities to help iOS development
 
 <b>find-unused-resource.sh </b>
 
-A small utility which generates a report of unused resources (png, jpg) in the xcode project. Searches all the source folders( .h, .m) and user interface definitions (.xib, .nib ، .storyboard). This will generate a list of candidates for cleaning up.
+A small utility which generates a report of unused resources (gif,jpg,png,jpeg) in the xcode project. Searches all the source folders( .h, .m) and user interface definitions (.xib, .nib ، .storyboard). This will generate a list of candidates for cleaning up.
 
 We now support gif,jpg,png,jpeg image File.
 We now support .storyboard file
